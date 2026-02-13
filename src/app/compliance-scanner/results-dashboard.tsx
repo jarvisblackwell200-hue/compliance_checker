@@ -250,7 +250,7 @@ function FullChecklist({
 
 // ─── CTA Section ─────────────────────────────────────────────────────────────
 
-function CTASection({ grade }: { grade: Grade }) {
+function CTASection({ grade, onDownloadPdf }: { grade: Grade; onDownloadPdf?: () => void }) {
   const messages: Record<Grade, string> = {
     A: "Your IR compliance is excellent! Stay ahead with automated monitoring.",
     B: "Good compliance posture with room for improvement.",
@@ -271,7 +271,10 @@ function CTASection({ grade }: { grade: Grade }) {
         <button className="px-8 py-3 bg-white text-blue-700 font-semibold rounded-lg hover:bg-blue-50 transition-colors">
           Book a Demo
         </button>
-        <button className="px-8 py-3 border-2 border-white text-white font-semibold rounded-lg hover:bg-white/10 transition-colors">
+        <button
+          onClick={onDownloadPdf}
+          className="px-8 py-3 border-2 border-white text-white font-semibold rounded-lg hover:bg-white/10 transition-colors"
+        >
           Download PDF Report
         </button>
       </div>
@@ -331,7 +334,7 @@ export default function ResultsDashboard({
       <FullChecklist scoringResult={scoringResult} />
 
       {/* CTA */}
-      <CTASection grade={scoringResult.overallGrade} />
+      <CTASection grade={scoringResult.overallGrade} onDownloadPdf={onDownloadPdf} />
     </div>
   );
 }

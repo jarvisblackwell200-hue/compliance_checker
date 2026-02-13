@@ -350,8 +350,10 @@ function ErrorScreen({
 
 export default function ScannerClient({
   onScanComplete,
+  onUrlCapture,
 }: {
   onScanComplete: (results: DetectionResult[]) => void;
+  onUrlCapture?: (url: string) => void;
 }) {
   const [phase, setPhase] = useState<ScanPhase>("idle");
   const [scanUrl, setScanUrl] = useState("");
@@ -361,6 +363,7 @@ export default function ScannerClient({
 
   const handleScan = async (url: string, exchange: string) => {
     setScanUrl(url);
+    onUrlCapture?.(url);
     setPhase("crawling");
     setCompletedChecks([]);
     setError(null);
