@@ -3,6 +3,7 @@
 import { useState } from "react";
 import ScannerClient from "./scanner-client";
 import SelfAssessmentClient from "./self-assessment-client";
+import ResultsDashboard from "./results-dashboard";
 import { calculateScore } from "@/lib/scoring";
 import type { DetectionResult, ScoringResult, SelfAssessmentAnswer } from "@/types";
 
@@ -37,22 +38,7 @@ export default function ComplianceScannerFlow() {
   }
 
   if (phase === "results" && scoringResult) {
-    return (
-      <div className="max-w-3xl mx-auto text-center">
-        <h2 className="text-2xl font-bold text-gray-900 mb-4">
-          Your Compliance Score
-        </h2>
-        <div className="text-8xl font-bold text-blue-600 mb-2">
-          {scoringResult.overallGrade}
-        </div>
-        <p className="text-xl text-gray-600 mb-6">
-          {scoringResult.overallScore}/100
-        </p>
-        <p className="text-gray-400">
-          Full results dashboard coming in Issue #6...
-        </p>
-      </div>
-    );
+    return <ResultsDashboard scoringResult={scoringResult} />;
   }
 
   return null;
