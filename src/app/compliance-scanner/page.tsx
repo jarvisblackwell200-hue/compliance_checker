@@ -9,8 +9,8 @@ export const metadata: Metadata = {
 
 export default function ComplianceScannerPage() {
   return (
-    <main className="min-h-screen bg-gray-50">
-      <div className="max-w-4xl mx-auto px-4 py-16">
+    <main className="min-h-screen relative overflow-hidden">
+      <div className="max-w-4xl mx-auto px-4 py-12 md:py-20 relative z-10">
         <ComplianceScannerFlow />
       </div>
     </main>
